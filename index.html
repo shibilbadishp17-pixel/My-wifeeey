@@ -3,71 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Valentine Surprise</title>
+<title>Valentine</title>
 <style>
     body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: #ff1a1a; /* solid red */
+        height: 100vh;
+        background: #ffe6f0;
         font-family: Arial, sans-serif;
-        color: white;
         text-align: center;
     }
-
     h1 {
-        font-size: 2.5rem;
-        margin-bottom: 50px;
-        text-shadow: 2px 2px 5px #000;
+        color: #ff0066;
     }
-
     button {
-        padding: 15px 40px;
-        font-size: 1.2rem;
-        border: none;
-        border-radius: 10px;
+        padding: 15px 30px;
+        font-size: 18px;
         margin: 10px;
+        border: none;
+        border-radius: 8px;
         cursor: pointer;
-        transition: 0.3s;
+        transition: all 0.3s ease;
     }
-
     #yes {
-        background-color: #ff4d6d;
+        background-color: #ff4d94;
         color: white;
     }
-
     #no {
-        background-color: #fff;
-        color: #ff4d6d;
+        background-color: #ffb3cc;
+        position: absolute;
     }
-
-    button:hover {
-        transform: scale(1.1);
-    }
-
 </style>
 </head>
 <body>
 
-<h1>Sana, will you be my Valentine?</h1>
-<button id="yes">Yes</button>
+<h1>Will you be my Valentine?</h1>
+<button id="yes" onclick="yesClicked()">Yes</button>
 <button id="no">No</button>
 
 <script>
-    const yesBtn = document.getElementById('yes');
-    const noBtn = document.getElementById('no');
+const noButton = document.getElementById('no');
 
-    yesBtn.addEventListener('click', () => {
-        alert("You got a snehikunna husband! ❤️");
-    });
+document.addEventListener('mousemove', (e) => {
+    const x = e.clientX;
+    const y = e.clientY;
+    const noRect = noButton.getBoundingClientRect();
+    
+    const dx = x - (noRect.left + noRect.width / 2);
+    const dy = y - (noRect.top + noRect.height / 2);
+    const distance = Math.sqrt(dx*dx + dy*dy);
 
-    noBtn.addEventListener('click', () => {
-        alert("Poyi yes il click cheyy kutta 😜");
-    });
+    if (distance < 100) { // distance threshold for moving
+        const offsetX = Math.random() * 300 - 150;
+        const offsetY = Math.random() * 300 - 150;
+        noButton.style.left = `${Math.min(window.innerWidth - 100, Math.max(0, noRect.left + offsetX))}px`;
+        noButton.style.top = `${Math.min(window.innerHeight - 50, Math.max(0, noRect.top + offsetY))}px`;
+    }
+});
+
+function yesClicked() {
+    alert("Yay! ❤️ You made my day!");
+}
 </script>
 
 </body>
