@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Surprise</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: url('https://images.unsplash.com/photo-1504615755583-2916b52192f7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w5NzY2N3wwfDF8c2VhcmNofDJ8fHJvc2VzfGVufDB8fHx8MTY5NjExNjc3Mg&ixlib=rb-4.0.3&q=80&w=1080') no-repeat center center/cover;
+        font-family: 'Arial', sans-serif;
+        color: white;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-shadow: 2px 2px 5px #000;
+    }
+
+    .button-container {
+        position: relative;
+        width: 300px;
+        height: 100px;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #yes {
+        background-color: #ff4d6d;
+        color: white;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #no {
+        background-color: #fff;
+        color: #ff4d6d;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+
+<h1>Sana, will you be my Valentine?</h1>
+<div class="button-container">
+    <button id="yes">Yes</button>
+    <button id="no">No</button>
+</div>
+
+<script>
+    const noBtn = document.getElementById('no');
+    const yesBtn = document.getElementById('yes');
+
+    // Floating "No" button
+    noBtn.addEventListener('mouseover', () => {
+        const container = document.querySelector('.button-container');
+        const maxX = container.offsetWidth - noBtn.offsetWidth;
+        const maxY = container.offsetHeight - noBtn.offsetHeight;
+        const randX = Math.floor(Math.random() * maxX);
+        const randY = Math.floor(Math.random() * maxY);
+        noBtn.style.left = randX + 'px';
+        noBtn.style.top = randY + 'px';
+    });
+
+    // Click events
+    yesBtn.addEventListener('click', () => {
+        alert("You got a snehikunna husband! ❤️");
+    });
+
+    noBtn.addEventListener('click', () => {
+        alert("Poyi yes il click cheyy kutta 😜");
+    });
+</script>
+
+</body>
+</html>
