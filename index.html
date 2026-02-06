@@ -17,18 +17,13 @@
         font-family: 'Arial', sans-serif;
         color: white;
         text-align: center;
+        overflow: hidden; /* Prevent scroll when No button moves */
     }
 
     h1 {
         font-size: 2.5rem;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         text-shadow: 2px 2px 5px #000;
-    }
-
-    .button-container {
-        position: relative;
-        width: 300px;
-        height: 100px;
     }
 
     button {
@@ -38,21 +33,22 @@
         border-radius: 10px;
         cursor: pointer;
         transition: all 0.3s ease;
+        position: absolute; /* Make all buttons absolutely positioned */
     }
 
     #yes {
         background-color: #ff4d6d;
         color: white;
-        position: absolute;
+        top: 50%;
         left: 50%;
-        transform: translateX(-50%);
+        transform: translate(-50%, -50%);
+        z-index: 1;
     }
 
     #no {
         background-color: #fff;
         color: #ff4d6d;
-        position: absolute;
-        top: 50%;
+        top: 70%;
         left: 50%;
         transform: translate(-50%, -50%);
     }
@@ -61,20 +57,17 @@
 <body>
 
 <h1>Sana, will you be my Valentine?</h1>
-<div class="button-container">
-    <button id="yes">Yes</button>
-    <button id="no">No</button>
-</div>
+<button id="yes">Yes</button>
+<button id="no">No</button>
 
 <script>
     const noBtn = document.getElementById('no');
     const yesBtn = document.getElementById('yes');
 
-    // Floating "No" button
+    // Floating "No" button across the entire viewport
     noBtn.addEventListener('mouseover', () => {
-        const container = document.querySelector('.button-container');
-        const maxX = container.offsetWidth - noBtn.offsetWidth;
-        const maxY = container.offsetHeight - noBtn.offsetHeight;
+        const maxX = window.innerWidth - noBtn.offsetWidth;
+        const maxY = window.innerHeight - noBtn.offsetHeight;
         const randX = Math.floor(Math.random() * maxX);
         const randY = Math.floor(Math.random() * maxY);
         noBtn.style.left = randX + 'px';
@@ -83,7 +76,17 @@
 
     // Click events
     yesBtn.addEventListener('click', () => {
-        alert("You got a snehikunna husband! ❤️");
+        // Create a romantic message instead of alert
+        const msg = document.createElement('h2');
+        msg.textContent = "You got a snehikunna husband! ❤️";
+        msg.style.position = 'absolute';
+        msg.style.top = '80%';
+        msg.style.left = '50%';
+        msg.style.transform = 'translateX(-50%)';
+        msg.style.color = '#ffeb3b';
+        msg.style.fontSize = '2rem';
+        msg.style.textShadow = '2px 2px 5px #000';
+        document.body.appendChild(msg);
     });
 
     noBtn.addEventListener('click', () => {
@@ -93,3 +96,4 @@
 
 </body>
 </html>
+
